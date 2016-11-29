@@ -117,10 +117,10 @@ OPEN_PORTS = []
 def analyze_port(host, port, sem):
     print "[ii] Analizando el puerto %s" % port
 
-    res = sr1(IP(dst=host) /
-              TCP(dport=port),
-              verbose=False,
-              timeout=0.2)
+    res = sr1(
+        IP(dst=host) / TCP(dport=port),
+        verbose=False,
+        timeout=0.2)
 
     if res is not None and TCP in res:
         if res[TCP].flags == 18:
@@ -145,8 +145,4 @@ def main(address, list_port):
     for x in OPEN_PORTS:
         print "     - %s/TCP" % x
     print
-
-
-if __name__ == '__main__':
-    main("google.es", [80, 81])
 # ----------------------------------------------------------------------
